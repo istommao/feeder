@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>feeder</title>
+    <style>
+        body {
+            margin: 0 auto;
+            padding: 0;
+        }
+        .itemList {
+            margin: 20px auto;
+            width: 680px;
+        }
+        .item {
+            overflow: hidden;
+            padding: 15px;
+        }
+        .itemTitle {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .itemSummary {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    {# {{ data.feed.title }} #}
+
+    <div class="itemList">
+        {% for item in data.entries %}
+        <div class="item">
+            <div class="itemTitle">{{ item.title }}  {{ item.author }}</div>
+            <div class="itemSummary">{{ item.summary|safe }}</div>
+            <a href="{{ item.link }}" target="_blank">原文</a>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
