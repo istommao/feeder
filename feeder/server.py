@@ -40,7 +40,11 @@ FEED_URL_DICT = {
     'aotu': 'https://aotu.io/atom.xml',
     'ifanr': 'http://www.ifanr.com/feed',
     'huxiu': 'https://www.huxiu.com/rss/0.xml',
-    'v2ex': 'https://www.v2ex.com/index.xml'
+    'v2ex': 'https://www.v2ex.com/index.xml',
+    '91ri': 'http://www.91ri.org/feed',
+    'xitu': 'https://gold.xitu.io/rss',
+    'codingpy': 'http://codingpy.com/feed/',
+    'rowkey': 'http://www.rowkey.me/atom.xml'
 }
 
 
