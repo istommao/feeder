@@ -1,5 +1,6 @@
+# coding: utf-8
 """feeder server.py."""
-import json
+import ujson
 import optparse
 
 from flask import Flask, render_template, abort
@@ -71,10 +72,12 @@ def infoq_subscription(urlname):
 
     data = KVSTORE.get(url)
     if data:
-        feed = json.loads(data)
+        feed = ujson.loads(data)
     else:
         feed = feedparser.parse(url)
-        data = json.dumps(feed)
+
+        data = ujson.dumps(feed)
+
         KVSTORE.set(url, data)
 
     sidemenus = FEED_URL_DICT.keys()
