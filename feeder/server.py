@@ -1,9 +1,12 @@
 """feeder server.py."""
+import json
 import optparse
 
 from flask import Flask, render_template, abort
 
 import feedparser
+
+from extensions.redis import KVSTORE
 
 
 APP = Flask(__name__)
@@ -46,6 +49,7 @@ FEED_URL_DICT = {
     '91ri': 'http://www.91ri.org/feed',
     'xitu': 'https://gold.xitu.io/rss',
     'codingpy': 'http://codingpy.com/feed/',
+    'dongwm': 'http://www.dongwm.com/atom.xml',
     'rowkey': 'http://www.rowkey.me/atom.xml'
 }
 
@@ -65,7 +69,13 @@ def infoq_subscription(urlname):
     except KeyError:
         abort(404)
 
-    feed = feedparser.parse(url)
+    data = KVSTORE.get(url)
+    if data:
+        feed = json.loads(data)
+    else:
+        feed = feedparser.parse(url)
+        data = json.dumps(feed)
+        KVSTORE.set(url, data)
 
     sidemenus = FEED_URL_DICT.keys()
     return render_template('content.html', data=feed, sidemenus=sidemenus)
