@@ -1,0 +1,9 @@
+<div class="menu">
+  <ul>
+
+    {% for item in sidemenus %}
+        <li{% if item.active %} class="active"{% endif %}>
+        <a href="/{{ item }}"><i class="fa fa-list-ul" aria-hidden="true"></i>&nbsp;&nbsp;{{ item }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

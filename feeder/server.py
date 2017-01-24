@@ -51,8 +51,8 @@ FEED_URL_DICT = {
 @APP.route('/')
 def homepage():
     """Home."""
-    data = FEED_URL_DICT.keys()
-    return render_template('home.html', data=data)
+    sidemenus = FEED_URL_DICT.keys()
+    return render_template('home.html', sidemenus=sidemenus)
 
 
 @APP.route('/<urlname>')
@@ -64,7 +64,9 @@ def infoq_subscription(urlname):
         abort(404)
 
     feed = feedparser.parse(url)
-    return render_template('content.html', data=feed)
+
+    sidemenus = FEED_URL_DICT.keys()
+    return render_template('content.html', data=feed, sidemenus=sidemenus)
 
 
 if __name__ == '__main__':

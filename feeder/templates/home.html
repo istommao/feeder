@@ -1,14 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Feeder</title>
+    <link rel="stylesheet" href="/static/css/main.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    {% block extra_style %}
+    {% endblock %}
+    <script type="text/javascript" src="/static/main.js"></script>
 </head>
 <body>
-    <ul>
-        {% for item in data %}
-        <li><a href="/{{ item }}" target="_blank">{{ item }}</a></li>
-        {% endfor %}
-    </ul>
+  <div id="pageWrapper">
+    <div class="topNav" id="topNav">
+      <div class="topbarHead"> Feeder </div>
+    </div>
+    <div class="container" id="container">
+      <div class="aside" id="sidebar">
+        {% include "menu.html" %}
+      </div>
+      <div class="main">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+</div>
 </body>
 </html>

@@ -1,42 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>feeder</title>
+{% extends "home.html" %}
+
+{% block extra_style %}
     <style>
         body {
             margin: 0 auto;
             padding: 0;
         }
         .itemList {
-            margin: 20px auto;
-            width: 680px;
+            margin: 15px 0 15px 10px;
+            width: 95%;
         }
         .item {
-            overflow: hidden;
+            overflow: auto;
             padding: 15px;
+            border: 1px solid #E0E0E0;
+            margin: 5px 0;
+            border-radius: 3px;
+            background: #ffffff;
+            width: 100%;
         }
         .itemTitle {
-            font-size: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 0 0 10px 0;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .itemTitle a {
+            text-decoration: none;
+        }
+        .itemContent {
+            margin: 10px 0;
+            max-height: 400px;
+            overflow-y: hidden;
+            font-size: 16px;
+        }
+        .itemContent h2 {
+            font-size: 18px;
             font-weight: bold;
         }
-        .itemSummary {
-            margin: 10px 0;
-        }
     </style>
-</head>
-<body>
-    {# {{ data.feed.title }} #}
+{% endblock %}
 
+{% block content %}
     <div class="itemList">
         {% for item in data.entries %}
         <div class="item">
-            <div class="itemTitle">{{ item.title }}  {{ item.author }}</div>
-            <div class="itemSummary">{{ item.summary|safe }}</div>
-            <a href="{{ item.link }}" target="_blank">原文</a>
+            <div class="itemTitle"><a href="{{ item.link }}" target="_blank">{{ item.title }}</a></div>
+            {% if item.content %}
+                <div class="itemContent">{{ item.content.0.value|safe }}</div>
+            {% else %}
+                <div class="itemContent">{{ item.summary|safe }}</div>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
-
-</body>
-</html>
+{% endblock %}
