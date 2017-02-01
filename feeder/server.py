@@ -78,7 +78,8 @@ def infoq_subscription(urlname):
 
         data = ujson.dumps(feed)
 
-        KVSTORE.set(url, data)
+        timeout = 3600 * 12
+        KVSTORE.set(url, data, timeout)
 
     sidemenus = FEED_URL_DICT.keys()
     return render_template('content.html', data=feed, sidemenus=sidemenus)
