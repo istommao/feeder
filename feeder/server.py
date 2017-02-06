@@ -51,7 +51,8 @@ FEED_URL_DICT = {
     'xitu': 'https://gold.xitu.io/rss',
     'codingpy': 'http://codingpy.com/feed/',
     'dongwm': 'http://www.dongwm.com/atom.xml',
-    'rowkey': 'http://www.rowkey.me/atom.xml'
+    'rowkey': 'http://www.rowkey.me/atom.xml',
+    'sec-wiki': 'https://www.sec-wiki.com/news/rss'
 }
 
 
